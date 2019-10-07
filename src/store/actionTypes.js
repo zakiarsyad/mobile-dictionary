@@ -1,0 +1,2 @@
+export const SETLOADING = 'SETLOADING'
+export const SETDEFINITIONS = 'SETDEFINITIONS'
