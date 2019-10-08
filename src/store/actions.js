@@ -1,7 +1,9 @@
 import {
     SETLOADING,
     SETDEFINITIONS,
-    SETKEYWORD
+    SETKEYWORD,
+    SETSEARCHPOSITION,
+    SETIMAGES
 } from './actionTypes'
 import axios from 'axios'
 
@@ -27,3 +29,21 @@ export const getDefinitions = payload => dispatch => {
         })
 }
 const setDefinitions = data => ({ type: SETDEFINITIONS, data })
+export const setSearchPosition = data => ({ type: SETSEARCHPOSITION, data })
+export const getImages = payload => dispatch => {
+    dispatch(setLoading(true))
+
+    axios({
+        method: 'get',
+        url: `https://pixabay.com/api/?key=13800093-98b0153adcad52f5c900cdd93&q=${payload}`
+    })
+        .then(({ data }) => {
+            dispatch(setImages(data.hits))
+            dispatch(setLoading(false))
+        })
+        .catch(err => {
+            alert(err.response.data.message)
+            dispatch(setLoading(false))
+        })
+}
+const setImages = data => ({ type: SETIMAGES, data })

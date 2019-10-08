@@ -3,17 +3,11 @@ import {
     StyleSheet,
     View,
     Text,
-    ActivityIndicator
-} from 'react-native';
+} from 'react-native'
 import Constants from 'expo-constants'
 import { useSelector } from 'react-redux'
 
-import DefinitionsList from '../../components/DefinitionsList'
-import Header from '../../components/Header'
-
 export default function ImageResult(props) {
-    const loading = useSelector(state => state.loading)
-
     return (
         <View style={styles.container}>
             <Text>ini image result</Text>
@@ -28,6 +22,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         marginTop: Constants.statusBarHeight,
-        width: '90%'
+        paddingHorizontal: 20,
     }
 })

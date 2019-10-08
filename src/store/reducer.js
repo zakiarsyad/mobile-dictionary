@@ -1,13 +1,17 @@
 import {
     SETLOADING,
     SETDEFINITIONS,
-    SETKEYWORD
+    SETKEYWORD,
+    SETSEARCHPOSITION,
+    SETIMAGES
 } from './actionTypes'
 
 const initialState = {
     loading: false,
-    keyword: 'book',
-    definitions: []
+    keyword: '',
+    definitions: [],
+    searchPosition: 'all',
+    images: []
 }
 
 export default (state = initialState, action) => {
@@ -26,6 +30,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loading: action.data
+            }
+        case SETSEARCHPOSITION:
+            return {
+                ...state,
+                searchPosition: action.data
+            }
+        case SETIMAGES:
+            return {
+                ...state,
+                images: action.data
             }
         default:
             return state

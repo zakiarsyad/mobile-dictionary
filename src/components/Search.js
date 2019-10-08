@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { StyleSheet, TextInput } from 'react-native';
-import { getDefinitions, setKeyword } from '../store/actions'
+import { getDefinitions, setKeyword, setSearchPosition } from '../store/actions'
 
 export default function Search(props) {
     const dispatch = useDispatch()
@@ -9,6 +9,7 @@ export default function Search(props) {
 
     const handleSearch = () => {
         dispatch(getDefinitions(keyword))
+        dispatch(setSearchPosition('all'))
         props.navigation.navigate('SearchResult')
     }
 
