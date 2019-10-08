@@ -14,9 +14,9 @@ const initialState = {
     definitions: [],
     searchPosition: 'all',
     images: [],
-    isLoggedIn: false,
+    isLoggedIn: true,
     user: {
-        email: '',
+        email: 'zaki@mail.com',
         id: ''
     },
     isRegistered: true,

@@ -62,14 +62,17 @@ export const login = payload => async dispatch => {
             payload.email,
             payload.password
         )
-        dispatch(setLoggedIn(true, data.user.email, data.user.uid))
+        console.log(data);
+        dispatch(setLoggedIn(true, data.user.email))
         dispatch(setLoading(false))
+        alert('login success')
     } catch (err) {
         alert(err.message)
         dispatch(setLoading(false))
+        dispatch(setLoggedIn(false, ''))
     }
 }
-const setLoggedIn = (data, email, id) => ({ type: SETLOGGEDIN, data, email, id })
+const setLoggedIn = (data, email) => ({ type: SETLOGGEDIN, data, email })
 export const setRegistered = () => ({ type: SETREGISTERED })
 export const register = payload => async dispatch => {
     dispatch(setLoading(true))
@@ -79,10 +82,21 @@ export const register = payload => async dispatch => {
             payload.email,
             payload.password
         )
-        dispatch(setLoggedIn(true, data.user.email, data.user.uid))
+        console.log(data);
+        dispatch(setLoggedIn(true, data.user.email))
         dispatch(setLoading(false))
+        alert('registration success')
     } catch (err) {
         alert(err.message)
         dispatch(setLoading(false))
+        dispatch(setLoggedIn(false, ''))
+    }
+}
+export const logout = payload => async dispatch => {
+    try {
+        await fireauth.signOut()
+        dispatch(setLoggedIn(false, ''))
+    } catch (err) {
+        alert(err.message)
     }
 }
