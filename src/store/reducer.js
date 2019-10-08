@@ -3,15 +3,23 @@ import {
     SETDEFINITIONS,
     SETKEYWORD,
     SETSEARCHPOSITION,
-    SETIMAGES
+    SETIMAGES,
+    SETLOGGEDIN,
+    SETREGISTERED
 } from './actionTypes'
 
 const initialState = {
     loading: false,
-    keyword: '',
+    keyword: 'run',
     definitions: [],
     searchPosition: 'all',
-    images: []
+    images: [],
+    isLoggedIn: false,
+    user: {
+        email: '',
+        id: ''
+    },
+    isRegistered: true,
 }
 
 export default (state = initialState, action) => {
@@ -40,6 +48,20 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 images: action.data
+            }
+        case SETLOGGEDIN:
+            return {
+                ...state,
+                isLoggedIn: action.data,
+                user: {
+                    email: action.email,
+                    id: action.id
+                }
+            }
+        case SETREGISTERED:
+            return {
+                ...state,
+                isRegistered: !state.isRegistered
             }
         default:
             return state

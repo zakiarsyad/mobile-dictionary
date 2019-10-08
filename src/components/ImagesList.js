@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-    FlatList,
-    Text,
     Image,
     View,
     ScrollView
@@ -12,8 +10,8 @@ export default function ImagesList() {
     const images = useSelector(state => state.images)
 
     return (
-        <ScrollView style={{ paddingVertical: 20 }}>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%' }}>
+        <ScrollView style={{ paddingTop: 20 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', width: '100%', marginBottom: 30 }}>
                 {images.map(el => {
                     return (
                         <Image

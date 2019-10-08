@@ -9,7 +9,7 @@ import UntouchableWord from '../components/UntouchableWord'
 
 export default function DefinitionItem(props) {
     return (
-        <View style={{ marginBottom: 15 }}>
+        <View style={{ marginBottom: 30 }}>
             <Text style={{ color: '#1a0dab', fontSize: 18 }}>{props.item.definition}</Text>
 
             {props.item.partOfSpeech &&

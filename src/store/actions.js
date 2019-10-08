@@ -1,9 +1,16 @@
+import firebase from '../configs/firebase'
+import db from '../apis/firebase'
+const { fireauth } = firebase
+const { oxpord } = db
+
 import {
     SETLOADING,
     SETDEFINITIONS,
     SETKEYWORD,
     SETSEARCHPOSITION,
-    SETIMAGES
+    SETIMAGES,
+    SETLOGGEDIN,
+    SETREGISTERED
 } from './actionTypes'
 import axios from 'axios'
 
@@ -47,3 +54,35 @@ export const getImages = payload => dispatch => {
         })
 }
 const setImages = data => ({ type: SETIMAGES, data })
+export const login = payload => async dispatch => {
+    dispatch(setLoading(true))
+
+    try {
+        const data = await fireauth.signInWithEmailAndPassword(
+            payload.email,
+            payload.password
+        )
+        dispatch(setLoggedIn(true, data.user.email, data.user.uid))
+        dispatch(setLoading(false))
+    } catch (err) {
+        alert(err.message)
+        dispatch(setLoading(false))
+    }
+}
+const setLoggedIn = (data, email, id) => ({ type: SETLOGGEDIN, data, email, id })
+export const setRegistered = () => ({ type: SETREGISTERED })
+export const register = payload => async dispatch => {
+    dispatch(setLoading(true))
+
+    try {
+        const data = await fireauth.createUserWithEmailAndPassword(
+            payload.email,
+            payload.password
+        )
+        dispatch(setLoggedIn(true, data.user.email, data.user.uid))
+        dispatch(setLoading(false))
+    } catch (err) {
+        alert(err.message)
+        dispatch(setLoading(false))
+    }
+}

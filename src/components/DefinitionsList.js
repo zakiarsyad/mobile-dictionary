@@ -11,11 +11,11 @@ export default function DefinitionsList() {
 
     return (
         <FlatList
-            style={{ paddingVertical: 20 }}
+            style={{ paddingTop: 20 }}
             data={definitions}
             renderItem={({ item }) => (
                 <DefinitionItem item={item}/>
             )}
-            keyExtractor={item => item.definition} />
+            keyExtractor={item => item.definition}/>
     )
 }

@@ -40,12 +40,12 @@ export default function SearchResult(props) {
                 <TouchableOpacity 
                     onPress={handleLinkToDefinitions}
                     style={{ width:'50%', alignItems: 'center' }}>
-                    <Text>All</Text>
+                    <Text style={{ color: '#4f4e4e' }}>All</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
                     onPress={handleLinkToImages}
                     style={{ width:'50%', alignItems: 'center' }}>
-                    <Text>Images</Text>
+                    <Text style={{ color: '#4f4e4e' }}>Images</Text>
                 </TouchableOpacity>
             </View>
         </View>

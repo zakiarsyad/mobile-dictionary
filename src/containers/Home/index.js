@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react'
-import { View, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import {
+    View,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native'
 import { useDispatch } from 'react-redux'
 
 import { setKeyword } from '../../store/actions'

@@ -5,16 +5,14 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import SearchResult from './src/containers/SearchResult/'
 import Home from './src/containers/Home/'
+import Auth from './src/containers/Auth/'
 import store from './src/store/'
-
-const SearchNavigation = createBottomTabNavigator({
-  SearchResult: SearchResult,
-});
 
 const RootNavigation = createAppContainer(createSwitchNavigator({
   Home,
-  SearchResult
-}, { initialRouteName: 'Home'}));
+  SearchResult,
+  Auth
+}, { initialRouteName: 'Auth'}));
 
 export default function App() {
   return (
