@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     View,
     StyleSheet,
     TouchableOpacity,
-    Text
+    Text,
+    Modal,
+    TouchableHighlight,
+    Alert
 } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import Constants from 'expo-constants'
@@ -11,10 +14,12 @@ import Constants from 'expo-constants'
 import { setKeyword, logout } from '../../store/actions'
 import Logo from '../../components/Logo'
 import Search from '../../components/Search'
+import User from '../../components/User'
 
 export default function Home(props) {
     const dispatch = useDispatch()
     const isLoggedIn = useSelector(state => state.isLoggedIn)
+    const [modalVisible, setModalVisible] = useState(false)
 
     useEffect(() => {
         dispatch(setKeyword(''))
@@ -24,12 +29,20 @@ export default function Home(props) {
         props.navigation.navigate('Auth')
     }
 
-    const handleLogout = () => {
-        dispatch(logout())
+    const handleModal = (value) => {
+        setModalVisible(value)
     }
-
+    
     return (
         <>  
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={modalVisible}>
+                <User
+                    handleModal={handleModal}
+                    navigation={props.navigation}/>
+            </Modal>
             {!isLoggedIn &&
                 <TouchableOpacity
                     onPress={handleLinkAuth}
@@ -39,9 +52,9 @@ export default function Home(props) {
             }
             {isLoggedIn &&
                 <TouchableOpacity
-                    onPress={handleLogout}
+                    onPress={() => handleModal(true)}
                     style={StyleSheet.absoluteFill, { marginTop: Constants.statusBarHeight + 20, alignItems: 'flex-end', marginRight: 20 }}>
-                    <Text style={styles.logoutbutton}>Log Out</Text>
+                    <Text style={styles.logoutbutton}>User</Text>
                 </TouchableOpacity>
             }
             <View style={styles.container}>

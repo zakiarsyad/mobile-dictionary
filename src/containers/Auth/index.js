@@ -65,14 +65,14 @@ export default function Auth(props) {
                                 onPress={handleLogin}
                                 style={styles.button}>
                                 <Text style={styles['button-text']}>Log In</Text>
-                        </TouchableOpacity>
-                        <View style={{ alignItems: 'center' }}>
-                            <Text>Don't have an account ?</Text>
-                            <TouchableOpacity
-                                onPress={handleLinkAuth}>
-                                <Text style={{ color: '#4285f4'}}>Register</Text>
                             </TouchableOpacity>
-                        </View>
+                            <View style={{ alignItems: 'center' }}>
+                                <Text>Don't have an account ?</Text>
+                                <TouchableOpacity
+                                    onPress={handleLinkAuth}>
+                                    <Text style={{ color: '#4285f4'}}>Register</Text>
+                                </TouchableOpacity>
+                            </View>
                         </>
                     }
                 
@@ -94,7 +94,7 @@ export default function Auth(props) {
                     <View style={{ alignItems: 'center' }}>
                         <Text>or</Text>
                         <TouchableOpacity onPress={handleLinkAsGuess}>
-                            <Text style={{ color: '#4285f4' }}>Login as guest</Text>
+                            <Text style={{ color: '#4285f4' }}>Browsing as guest</Text>
                         </TouchableOpacity>
                     </View>
                 </>
