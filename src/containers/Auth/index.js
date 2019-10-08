@@ -56,6 +56,7 @@ export default function Auth(props) {
                     <TextInput 
                         onChangeText={setPassword}
                         name="password"
+                        secureTextEntry={true} 
                         style={styles.input}
                         placeholder='password' />
                 
