@@ -1,17 +1,26 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import React, { useEffect } from 'react'
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import { useDispatch } from 'react-redux'
 import Constants from 'expo-constants'
 
+import { setKeyword } from '../../store/actions'
 import Logo from '../../components/Logo'
-import SearchResult from '../../containers/SearchResult/'
+import ImageResult from '../../containers/ImageResult/'
 import Search from '../../components/Search'
 
-export function Home(props) {
+export default function Home(props) {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(setKeyword(''))
+    }, [])
+
     return (
         <View style={styles.container}>
-            <Logo navigation={props.navigation}/>
-            <Search navigation={props.navigation} />
+            <TouchableOpacity style={styles.logo}>
+                <Logo />
+            </TouchableOpacity>
+            <Search navigation={props.navigation}/>
         </View>
     )
 }
@@ -25,10 +34,11 @@ const styles = StyleSheet.create({
         paddingTop: '40%',
         marginTop: Constants.statusBarHeight,
         width: '70%'
+    },
+    logo: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50
     }
 });
 
-export default createAppContainer(createSwitchNavigator(
-    { Home, SearchResult },
-    { initialRouteName: 'Home' }
-));

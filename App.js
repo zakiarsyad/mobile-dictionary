@@ -1,24 +1,36 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
+
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+
+import SearchResult from './src/containers/SearchResult/'
 
 import Home from './src/containers/Home/'
 import store from './src/store/'
 
-export default function App() {
+const TabNavigator = createBottomTabNavigator({
+  SearchResult: SearchResult,
+});
+
+const RootNavigation = createAppContainer(createSwitchNavigator({
+  Home,
+  SearchResult: TabNavigator
+}));
+
+export default function App() { 
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Home />
-      </View>
+      <RootNavigation />
     </Provider>
   );
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-});
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+};

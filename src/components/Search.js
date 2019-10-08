@@ -1,26 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { StyleSheet, TextInput } from 'react-native';
-import { getDefinitions } from '../store/actions'
+import { getDefinitions, setKeyword } from '../store/actions'
 
 export default function Search(props) {
     const dispatch = useDispatch()
-
-    const [keyword, setKeyword] = useState('')
+    const keyword = useSelector(state => state.keyword)
 
     const handleSearch = () => {
         dispatch(getDefinitions(keyword))
-            .then(() => {
-                props.navigation.navigate('SearchResult')
-            })
+        props.navigation.navigate('SearchResult')
     }
 
     return (
         <TextInput
             style={styles["search-input"]}
             onSubmitEditing={handleSearch}
+            placeholder="type a word and hit enter"
             value={keyword}
-            onChangeText={setKeyword}/>
+            onChangeText={text => dispatch(setKeyword(text))} />
     );
 }
 
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         height: 40,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: '#ddd',
         paddingLeft: 20,
         paddingRight: 20
     }

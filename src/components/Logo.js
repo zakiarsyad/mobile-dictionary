@@ -1,28 +1,23 @@
 import React from 'react'
-import { TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, View } from 'react-native'
 
 export default function Logo(props) {
-    const handlePress = () => {
-        props.navigation.navigate('Home')
-    }
-
     return (
-        <TouchableOpacity
-            style={styles.logo}>
+        <View style={styles.logo}>
             <Text style={styles.blue}>O</Text>
             <Text style={styles.red}>x</Text>
             <Text style={styles.yellow}>p</Text>
             <Text style={styles.blue}>o</Text>
             <Text style={styles.green}>r</Text>
             <Text style={styles.red}>d</Text>
-        </TouchableOpacity>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     logo: {
         flexDirection: 'row',
-        marginBottom: 10
+        width: '100%',
     },
     blue: {
         fontSize: 25,

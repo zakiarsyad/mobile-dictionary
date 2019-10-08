@@ -1,11 +1,12 @@
 import {
     SETLOADING,
-    SETDEFINITIONS
+    SETDEFINITIONS,
+    SETKEYWORD
 } from './actionTypes'
 
 const initialState = {
     loading: false,
-    keyword: '',
+    keyword: 'book',
     definitions: []
 }
 
@@ -15,6 +16,16 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 definitions: action.data
+            }
+        case SETKEYWORD:
+            return {
+                ...state,
+                keyword: action.data
+            }
+        case SETLOADING:
+            return {
+                ...state,
+                loading: action.data
             }
         default:
             return state
