@@ -11,7 +11,7 @@ const RootNavigation = createAppContainer(createSwitchNavigator({
   Home,
   SearchResult,
   Auth
-}, { initialRouteName: 'Home'}));
+}, { initialRouteName: 'Auth'}));
 
 export default function App() {
   return (
