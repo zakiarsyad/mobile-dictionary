@@ -8,7 +8,7 @@ import {
 import Constants from 'expo-constants'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { logout, getHistories } from '../store/actions'
+import { logout, getHistories, getDefinitions, setKeyword } from '../store/actions'
 
 export default User = (props) => {
     const dispatch = useDispatch()
@@ -22,6 +22,12 @@ export default User = (props) => {
     const handleLogOut = () => {
         dispatch(logout())
         props.navigation.navigate('Auth')
+    }
+
+    const handleWordClick = word => {
+        dispatch(getDefinitions(word))
+        dispatch(setKeyword(word))
+        props.navigation.navigate('SearchResult')
     }
 
     console.log(histories)
@@ -42,13 +48,18 @@ export default User = (props) => {
             </View>
             <Text>Hi {user.email}</Text>
             <Text>User History</Text>
+            <Text style={{ fontSize: 12 }}>( click a single word to get more definitions)</Text>
             {histories &&
                 histories.map((el, i) => {
                     return (
                         <View
                             key={i}
                             style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-                            <Text>keyword: {el.keyword}</Text>
+                            <Text>keyword: </Text>
+                            <TouchableOpacity
+                                onPress={() => handleWordClick(el.keyword)}>
+                                <Text>{el.keyword}</Text>
+                            </TouchableOpacity>
                             <Text> - time: {(el.createdAt.toDate()).toString().slice(0,15)}</Text>
                         </View>
                     )
