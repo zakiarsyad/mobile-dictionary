@@ -1,7 +1,9 @@
 import firebase from '../configs/firebase'
 import db from '../apis/firebase'
+import store from '.'
 const { fireauth } = firebase
 const { oxpord } = db
+
 
 import {
     SETLOADING,
@@ -10,7 +12,8 @@ import {
     SETSEARCHPOSITION,
     SETIMAGES,
     SETLOGGEDIN,
-    SETREGISTERED
+    SETREGISTERED,
+    SETHISTORIES
 } from './actionTypes'
 import axios from 'axios'
 
@@ -27,6 +30,7 @@ export const getDefinitions = payload => dispatch => {
         }
     })
         .then(({ data }) => {
+            dispatch(saveHistories(payload))
             dispatch(setDefinitions(data.results))
             dispatch(setLoading(false))
         })
@@ -100,3 +104,51 @@ export const logout = payload => async dispatch => {
         alert(err.message)
     }
 }
+
+export const getHistories = payload => async dispatch => {
+    // dispatch(setLoading(true))
+
+    // try {
+    //     console.log('masuk get histories');
+    //     const data = await oxpord
+    //         .where("email", "==", store.getState().user.email)
+    //         .orderBy('createdAt', 'desc')
+
+    //     data.onSnapshot(querySnapshot => {
+    //         const histories = []
+
+    //         querySnapshot.forEach((doc) => {
+    //             const newData = {
+    //                 id: doc.id,
+    //                 ...doc.data()
+    //             }
+    //             histories.push(newData)
+    //         })
+    //         dispatch(setHistories(histories))
+    //     })
+    //     dispatch(setLoading(false))
+    // } catch (err) {
+    //     console.log(err.message)
+    //     dispatch(setLoading(false))
+    // }
+}
+
+export const setHistories = data => ({ type: SETHISTORIES, data })
+
+export const saveHistories = payload => async dispatch => {
+    const createdAt = new Date()
+    const keyword = payload
+    const email = store.getState().user.email
+
+    dispatch(setLoading(true))
+
+    try {
+        await oxpord.add({
+            email, keyword, createdAt
+        })
+        dispatch(setLoading(false))
+    } catch (err) {
+        console.log(err.message)
+        dispatch(setLoading(false))
+    }
+} 

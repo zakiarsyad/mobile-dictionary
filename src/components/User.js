@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     StyleSheet,
     View,
@@ -6,17 +6,24 @@ import {
     TouchableOpacity
 } from 'react-native'
 import Constants from 'expo-constants'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { logout } from '../store/actions'
+import { logout, getHistories } from '../store/actions'
 
 export default User = (props) => {
     const dispatch = useDispatch()
+    const histories = useSelector(state => state.histories)
+
+    useEffect(() => {
+        dispatch(getHistories())
+    }, [histories])
 
     const handleLogOut = () => {
         dispatch(logout())
         props.navigation.navigate('Auth')
     }
+
+    console.log(histories)
 
     return (
         <View style={styles.container}>

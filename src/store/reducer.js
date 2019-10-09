@@ -5,12 +5,13 @@ import {
     SETSEARCHPOSITION,
     SETIMAGES,
     SETLOGGEDIN,
-    SETREGISTERED
+    SETREGISTERED,
+    SETHISTORIES
 } from './actionTypes'
 
 const initialState = {
     loading: false,
-    keyword: 'run',
+    keyword: '',
     definitions: [],
     searchPosition: 'all',
     images: [],
@@ -20,6 +21,7 @@ const initialState = {
         id: ''
     },
     isRegistered: true,
+    histories: []
 }
 
 export default (state = initialState, action) => {
@@ -62,6 +64,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isRegistered: !state.isRegistered
+            }
+        case SETHISTORIES:
+            return {
+                ...state,
+                histories: action.data
             }
         default:
             return state
