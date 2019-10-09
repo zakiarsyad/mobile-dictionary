@@ -113,6 +113,7 @@ export const getHistories = payload => async dispatch => {
         console.log('masuk get histories');
         const data = await oxpord
             .where("email", "==", store.getState().user.email)
+            .orderBy("createdAt", "desc")
 
         data.onSnapshot(querySnapshot => {
             const histories = []
