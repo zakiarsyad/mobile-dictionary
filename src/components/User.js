@@ -43,9 +43,14 @@ export default User = (props) => {
             <Text>Hi {user.email}</Text>
             <Text>User History</Text>
             {histories &&
-                histories.map(el => {
+                histories.map((el, i) => {
                     return (
-                        <Text>keyword: {el.keyword}</Text>
+                        <View
+                            key={i}
+                            style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+                            <Text>keyword: {el.keyword}</Text>
+                            <Text> - time: {(el.createdAt.toDate()).toString().slice(0,15)}</Text>
+                        </View>
                     )
                 })
             }
