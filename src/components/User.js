@@ -17,7 +17,7 @@ export default User = (props) => {
 
     useEffect(() => {
         dispatch(getHistories())
-    }, [histories])
+    }, [])
 
     const handleLogOut = () => {
         dispatch(logout())
@@ -42,6 +42,7 @@ export default User = (props) => {
             </View>
             <Text>Hi {user.email}</Text>
             <Text>User History</Text>
+            
         </View>
     )
 }

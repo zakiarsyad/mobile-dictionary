@@ -106,32 +106,31 @@ export const logout = payload => async dispatch => {
 }
 
 export const getHistories = payload => async dispatch => {
-    // dispatch(setLoading(true))
+    dispatch(setLoading(true))
     console.log(store.getState().user.email);
 
-    // try {
-    //     console.log('masuk get histories');
-    //     const data = await oxpord
-    //         .where("email", "==", store.getState().user.email)
-    //         .orderBy('createdAt', 'desc')
+    try {
+        console.log('masuk get histories');
+        const data = await oxpord
+            .where("email", "==", store.getState().user.email)
 
-    //     data.onSnapshot(querySnapshot => {
-    //         const histories = []
+        data.onSnapshot(querySnapshot => {
+            const histories = []
 
-    //         querySnapshot.forEach((doc) => {
-    //             const newData = {
-    //                 id: doc.id,
-    //                 ...doc.data()
-    //             }
-    //             histories.push(newData)
-    //         })
-    //         dispatch(setHistories(histories))
-    //     })
-    //     dispatch(setLoading(false))
-    // } catch (err) {
-    //     console.log(err.message)
-    //     dispatch(setLoading(false))
-    // }
+            querySnapshot.forEach((doc) => {
+                const newData = {
+                    id: doc.id,
+                    ...doc.data()
+                }
+                histories.push(newData)
+            })
+            dispatch(setHistories(histories))
+        })
+        dispatch(setLoading(false))
+    } catch (err) {
+        console.log(err.message)
+        dispatch(setLoading(false))
+    }
 }
 
 export const setHistories = data => ({ type: SETHISTORIES, data })
