@@ -107,6 +107,7 @@ export const logout = payload => async dispatch => {
 
 export const getHistories = payload => async dispatch => {
     // dispatch(setLoading(true))
+    console.log(store.getState().user.email);
 
     // try {
     //     console.log('masuk get histories');

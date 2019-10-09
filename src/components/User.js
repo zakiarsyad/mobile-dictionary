@@ -13,6 +13,7 @@ import { logout, getHistories } from '../store/actions'
 export default User = (props) => {
     const dispatch = useDispatch()
     const histories = useSelector(state => state.histories)
+    const user = useSelector(state => state.user)
 
     useEffect(() => {
         dispatch(getHistories())
@@ -39,6 +40,7 @@ export default User = (props) => {
                     <Text style={styles.button}>Log Out</Text>
                 </TouchableOpacity>
             </View>
+            <Text>Hi {user.email}</Text>
             <Text>User History</Text>
         </View>
     )
