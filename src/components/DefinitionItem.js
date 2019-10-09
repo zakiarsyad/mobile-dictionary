@@ -16,6 +16,8 @@ export default function DefinitionItem(props) {
                 <Text style={{ color: '#006621', fontSize: 12 }}>PartOfSpeech : {props.item.partOfSpeech}</Text>
             }
 
+            <Text style={{ fontSize: 12 }}>( click a single word to get more definitions)</Text>
+
             <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                 {props.item.inCategory &&
                     <TouchableWord item={props.item.inCategory} title={'In Category'} />}

@@ -42,7 +42,13 @@ export default User = (props) => {
             </View>
             <Text>Hi {user.email}</Text>
             <Text>User History</Text>
-            
+            {histories &&
+                histories.map(el => {
+                    return (
+                        <Text>keyword: {el.keyword}</Text>
+                    )
+                })
+            }
         </View>
     )
 }
